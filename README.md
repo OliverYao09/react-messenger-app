@@ -1,6 +1,6 @@
 # React Messenger App
 
-Building a real time chat application just like Facebook Messenger
+Building a real time chat application just like Facebook Messenger - For Fun 😛
 
 ## Technologies used for the proejct
 Frontend:
