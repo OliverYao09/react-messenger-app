@@ -9,12 +9,12 @@ import fetcher from '../utils/fetchMessages';
 function ChatInput() {
   // State
   const [input, setInput] = useState('');
-  const { data, error, mutate } = useSWR('/api/getMessages', fetcher);
 
-  console.log(data);
+  // Fetching messages from Upstash database
+  const { data: messages, error, mutate } = useSWR('/api/getMessages', fetcher);
 
-  // Handle Message sending
-  const addMessage = (e: FormEvent<HTMLFormElement>) => {
+  console.log(messages); // Handle Message sending
+  const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!input) return;
@@ -37,7 +37,7 @@ function ChatInput() {
 
     // Handle upload new messages to the server
     const uploadMessageToUpstash = async () => {
-      const res = await fetch('/api/addMessage', {
+      const data = await fetch('/api/addMessage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,14 +45,17 @@ function ChatInput() {
         body: JSON.stringify({
           message,
         }),
-      });
+      }).then((res) => res.json());
 
-      const data = await res.json();
-      console.log('Message ADDED >>>', data);
+      return [data.message, ...messages!];
     };
 
-    // Call the function to send message
-    uploadMessageToUpstash();
+    // Handle real time messages fetching
+    await mutate(uploadMessageToUpstash, {
+      optimisticData: [message, ...messages!],
+      // handle roll back errors
+      rollbackOnError: true,
+    });
   };
 
   return (
