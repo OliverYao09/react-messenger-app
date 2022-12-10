@@ -11,9 +11,9 @@ Frontend:
  5. Next.js
 
 Backend:
-1.Redis, 
-2.Upstash, 
-3.SWR
+1. Redis, 
+2. Upstash, 
+3. SWR
 
 ## Deploy your own
 
