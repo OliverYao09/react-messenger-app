@@ -20,3 +20,8 @@ Backend:
 ## Demo Link
 UNDER DEVELOPMENT
 
+## Notice:
+- You will be having issues when you try to run the application on your localhost,
+- You will need to create your own server on Upstash and channel on Pusher to get the application running properly.
+- Upstash: https://upstash.com
+- Pusher: https://pusher.com
