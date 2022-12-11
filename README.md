@@ -4,7 +4,7 @@ Building a real time chat application just like Facebook Messenger - For Fun ðŸ˜
 
 ## Technologies used for the proejct
 Frontend:
- - Next.js
+ - Next.js - Server Side rendering
  - React.js, 
  - TypeScript, 
  - JavaScript, 
