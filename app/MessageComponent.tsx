@@ -7,7 +7,7 @@ type Props = {
 };
 
 function MessageComponent({ message }: Props) {
-  const isUser = false;
+  const isUser = true;
 
   return (
     <div className={`flex w-fit ${isUser && 'ml-auto'}`}>
